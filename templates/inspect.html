@@ -14,13 +14,17 @@
       --cyan:#00e5ff;
       --gold:#ffd600;
       --white:#f0eaf8;
-      --muted:rgba(240,234,248,0.45);
+      --muted:rgba(245, 243, 248, 0.938);
       --glass:rgba(255,255,255,0.035);
-      --bm:rgba(232,0,125,0.2);
-      --bc:rgba(0,229,255,0.15);
     }
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh}
+    body{
+      background:var(--bg);
+      color:var(--white);
+      font-family:'Sans serif',monospace;
+      font-size:20px;
+      min-height:100vh;
+    }
     body::before{
       content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
       background:
@@ -28,23 +32,31 @@
         radial-gradient(ellipse 60% 50% at 100% 100%,rgba(0,229,255,0.08) 0%,transparent 55%);
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav{
       position:fixed;top:0;left:0;right:0;z-index:200;
       display:flex;align-items:center;justify-content:space-between;
-      padding:0 52px;height:70px;
-      background:rgba(11,8,18,0.85);
+      padding:0 52px;height:74px;
+      background:rgba(11,8,18,0.88);
       backdrop-filter:blur(20px);
       border-bottom:1px solid rgba(232,0,125,0.18);
     }
-    .logo{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:.1em;color:var(--white);text-decoration:none;display:flex;align-items:center}
-    .logo .dot{color:var(--magenta);font-size:2.2rem;line-height:.5;margin-left:1px}
+    .logo{
+      font-family:'sans-serif',monospace;
+      font-size:2.3rem;letter-spacing:.1em;
+      color:var(--white);text-decoration:none;display:flex;align-items:center;
+    }
+    .logo .dot{color:var(--magenta);font-size:2.5rem;line-height:.5;margin-left:1px}
     .nav-links{display:flex;gap:38px;align-items:center}
-    .nav-links a{color:var(--white);text-decoration:none;font-size:.92rem;opacity:.6;transition:opacity .2s,color .2s}
+    .nav-links a{
+      color:var(--white);text-decoration:none;
+      font: size 1.1rem;font-weight:400;opacity:.65;
+      transition:opacity .2s,color .2s;letter-spacing:.02em;
+    }
     .nav-links a:hover{opacity:1;color:var(--cyan)}
     .btn-cta{
-      font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.1em;
-      padding:10px 26px;border-radius:5px;
+      font-family:'Sans serif',monospace;font-size:.85rem;font-weight:500;letter-spacing:.1em;
+      padding:11px 28px;border-radius:5px;
       background:linear-gradient(135deg,var(--magenta),#c2006b);
       color:#fff;border:none;cursor:pointer;text-decoration:none;
       box-shadow:0 0 22px rgba(232,0,125,.4);
@@ -52,107 +64,128 @@
     }
     .btn-cta:hover{box-shadow:0 0 38px rgba(232,0,125,.65);transform:translateY(-1px)}
 
-    /* LAYOUT */
-    main{position:relative;z-index:1;padding-top:70px;min-height:100vh;display:flex;flex-direction:column}
+    /* ── LAYOUT ── */
+    main{position:relative;z-index:1;padding-top:74px;min-height:100vh;display:flex;flex-direction:column}
 
-    /* PAGE HEADER */
+    /* ── PAGE HEADER ── */
     .page-hd{
-      padding:48px 52px 0;
+      padding:52px 52px 40px;
       border-bottom:1px solid rgba(255,255,255,.06);
-      padding-bottom:36px;
     }
     .breadcrumb{
-      font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.18em;
-      color:rgba(240,234,248,.3);text-transform:uppercase;margin-bottom:14px;
+      font-family:'Sans serif',monospace;font-size:.78rem;letter-spacing:.18em;
+      color:rgba(240,234,248,.35);text-transform:uppercase;margin-bottom:16px;
     }
-    .breadcrumb a{color:var(--cyan);text-decoration:none;opacity:.8}
+    .breadcrumb a{color:var(--cyan);text-decoration:none;opacity:.85}
     .breadcrumb a:hover{opacity:1}
-    .page-hd h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:.06em;line-height:1}
-    .page-hd h1 em{font-style:normal;color:var(--magenta)}
-    .page-hd p{margin-top:10px;font-size:.95rem;font-weight:300;color:var(--muted);max-width:560px;line-height:1.7}
-
-    /* STATUS CHIPS */
-    .status-row{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-      padding:28px 52px;
+    .page-hd h1{
+      font-family:'Sans serif',monospace;
+      font-size:clamp(3rem,5.5vw,4.4rem);
+      letter-spacing:.06em;line-height:1;
     }
-    .chip{padding:16px 20px;border-radius:10px;border:1px solid;cursor:default}
+    .page-hd h1 em{font-style:normal;color:var(--magenta)}
+    .page-hd p{
+      margin-top:14px;font-size:1.05rem;font-weight:300;
+      color:var(--muted);max-width:600px;line-height:1.75;
+    }
+
+    /* ── STATUS CHIPS ── */
+    .status-row{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+      padding:30px 52px;
+    }
+    .chip{padding:20px 24px;border-radius:12px;border:1px solid;cursor:default;transition:transform .2s}
+    .chip:hover{transform:translateY(-3px)}
     .chip.n{border-color:rgba(0,229,255,.28);background:rgba(0,229,255,.05)}
     .chip.s{border-color:rgba(255,214,0,.28);background:rgba(255,214,0,.05)}
     .chip.p{border-color:rgba(232,0,125,.32);background:rgba(232,0,125,.06)}
-    .chip-dot{width:8px;height:8px;border-radius:50%;margin-bottom:10px}
-    .chip.n .chip-dot{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-    .chip.s .chip-dot{background:var(--gold);box-shadow:0 0 8px var(--gold)}
-    .chip.p .chip-dot{background:var(--magenta);box-shadow:0 0 8px var(--magenta)}
-    .chip strong{font-size:.88rem;font-weight:500;display:block;margin-bottom:3px}
-    .chip p{font-size:.76rem;color:var(--muted);line-height:1.5}
+    .chip-dot{width:10px;height:10px;border-radius:50%;margin-bottom:12px}
+    .chip.n .chip-dot{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+    .chip.s .chip-dot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+    .chip.p .chip-dot{background:var(--magenta);box-shadow:0 0 10px var(--magenta)}
+    .chip strong{font-size:1.2rem;font-weight:600;display:block;margin-bottom:5px}
+    .chip p{font-size:1rem;color:var(--muted);line-height:1.55}
 
-    /* FORM CARD */
-    .form-wrap{padding:0 52px 80px;flex:1}
+    /* ── FORM CARD ── */
+    .form-wrap{padding:0 52px 90px;flex:1}
     .form-card{
       background:var(--glass);
       border:1px solid rgba(232,0,125,.16);
-      border-radius:14px;overflow:hidden;
+      border-radius:16px;overflow:hidden;
       backdrop-filter:blur(8px);
     }
     .fc-header{
-      padding:20px 28px;border-bottom:1px solid rgba(255,255,255,.07);
+      padding:22px 32px;border-bottom:1px solid rgba(255,255,255,.07);
       display:flex;align-items:center;justify-content:space-between;
     }
-    .fc-title{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.18em;color:var(--cyan);text-transform:uppercase}
-    .fc-badge{
-      font-family:'DM Mono',monospace;font-size:.7rem;
-      padding:5px 14px;border-radius:100px;
-      border:1px solid rgba(0,229,255,.25);color:var(--cyan);
-      background:rgba(0,229,255,.07);
+    .fc-title{
+      font-family:'Sans serif',monospace;font-size:.90rem;
+      letter-spacing:.18em;color:var(--cyan);text-transform:uppercase;
     }
+    .fc-badge{
+      font-family:'Sans serif',monospace;font-size:.82rem;
+      padding:6px 16px;border-radius:100px;
+      border:1px solid rgba(0,229,255,.28);color:var(--cyan);
+      background:rgba(0,229,255,.07);letter-spacing:.06em;
+    }
+    .fc-body{padding:36px 32px}
 
-    .fc-body{padding:32px 28px}
-
+    /* Section labels */
     .sec-label{
-      font-family:'DM Mono',monospace;font-size:.68rem;
+      font-family:'Sans serif',monospace;font-size:.95rem;
       letter-spacing:.22em;text-transform:uppercase;
-      color:var(--magenta);opacity:.7;
-      margin-bottom:16px;margin-top:28px;
-      display:flex;align-items:center;gap:10px;
+      color:var(--magenta);opacity:.8;
+      margin-bottom:18px;margin-top:32px;
+      display:flex;align-items:center;gap:12px;
     }
     .sec-label:first-child{margin-top:0}
     .sec-label::after{content:'';flex:1;height:1px;background:var(--magenta);opacity:.2}
 
-    .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 22px}
+    /* Form grids */
+    .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 24px}
     .form-grid.cols2{grid-template-columns:repeat(2,1fr)}
 
-    .fg{display:flex;flex-direction:column;gap:8px}
+    /* Field group */
+    .fg{display:flex;flex-direction:column;gap:9px}
     .fg label{
-      font-family:'DM Mono',monospace;font-size:.65rem;
-      color:rgba(240,234,248,.4);letter-spacing:.06em;text-transform:uppercase;
-      line-height:1.4;
+      font-family:'Sans serif',monospace;font-size:.95rem;
+      color:rgba(247, 244, 250, 0.986);letter-spacing:.05em;
+      text-transform:uppercase;line-height:1.45;
     }
-    .fg label span{display:block;color:rgba(0,229,255,.45);font-size:.6rem;margin-top:2px;text-transform:none;letter-spacing:0}
+    .fg label span{
+      display:block;color:rgba(9, 230, 255, 0.856);
+      font: size 0.85rem;margin-top:3px;
+      text-transform:none;letter-spacing:0;
+    }
     .fg input{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:7px;padding:12px 14px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;padding:13px 16px;
       color:var(--white);
-      font-family:'DM Mono',monospace;font-size:.88rem;
+      font-family:'Sans serif',monospace;font-size:.95rem;
       outline:none;width:100%;
       transition:border-color .2s,background .2s,box-shadow .2s;
     }
     .fg input:focus{
-      border-color:rgba(232,0,125,.55);
-      background:rgba(232,0,125,.04);
-      box-shadow:0 0 0 3px rgba(232,0,125,.1);
+      border-color:rgba(232, 0, 124, 0.801);
+      background:rgba(232,0,125,.05);
+      box-shadow:0 0 0 3px rgba(232,0,125,.12);
     }
-    .fg input::placeholder{color:rgba(240,234,248,.18)}
+    .fg input::placeholder{color:rgba(240,234,248,.2);font-size:.9rem}
 
-    .fc-footer{
-      padding:22px 28px;border-top:1px solid rgba(255,255,255,.07);
+    /* Footer */
+    .fc-footer-row{
+      margin-top:32px;padding-top:28px;
+      border-top:1px solid rgba(255,255,255,.07);
       display:flex;align-items:center;justify-content:space-between;
     }
-    .fc-note{font-family:'DM Mono',monospace;font-size:.7rem;color:rgba(240,234,248,.28)}
+    .fc-note{
+      font-family:'Sans serif',monospace;font-size:.78rem;
+      color:rgba(240,234,248,.3);
+    }
     .btn-submit{
-      font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;letter-spacing:.08em;
-      padding:14px 40px;border-radius:5px;
+      font-family:'Sans serif',monospace;font-size:.95rem;font-weight:500;letter-spacing:.08em;
+      padding:15px 44px;border-radius:6px;
       background:linear-gradient(135deg,var(--magenta),#c2006b);
       color:#fff;border:none;cursor:pointer;
       box-shadow:0 4px 24px rgba(232,0,125,.38);
@@ -160,16 +193,17 @@
     }
     .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(232,0,125,.58)}
 
+    /* ── RESPONSIVE ── */
     @media(max-width:960px){
       nav{padding:0 20px}
       .page-hd,.status-row,.form-wrap{padding-left:20px;padding-right:20px}
       .form-grid,.form-grid.cols2{grid-template-columns:repeat(2,1fr)}
-      .status-row{grid-template-columns:1fr}
+      .status-row{grid-template-columns:1fr;gap:12px}
     }
     @media(max-width:600px){
       .nav-links{display:none}
       .form-grid,.form-grid.cols2{grid-template-columns:1fr}
-      .fc-footer{flex-direction:column;gap:14px;align-items:stretch}
+      .fc-footer-row{flex-direction:column;gap:16px;align-items:stretch}
       .btn-submit{text-align:center}
     }
   </style>
@@ -187,73 +221,80 @@
 </nav>
 
 <main>
+  <!-- Page Header -->
   <div class="page-hd">
     <div class="breadcrumb"><a href="/">Home</a> &rsaquo; Prediction</div>
     <h1>CTG <em>Feature</em> Input</h1>
-    <p>Enter the 20 Cardiotocography parameters below. The model will classify fetal health as Normal, Suspect, or Pathological.</p>
+    <p>Enter the 8 Cardiotocography parameters below. The model will classify fetal health as Normal, Suspect, or Pathological.</p>
   </div>
 
+  <!-- Status Chips -->
   <div class="status-row">
     <div class="chip n"><div class="chip-dot"></div><strong>Normal</strong><p>No hypoxia or acidosis. Healthy fetal state.</p></div>
     <div class="chip s"><div class="chip-dot"></div><strong>Suspect</strong><p>Requires clinical evaluation and monitoring.</p></div>
     <div class="chip p"><div class="chip-dot"></div><strong>Pathological</strong><p>Immediate medical intervention required.</p></div>
   </div>
 
+  <!-- Form -->
   <div class="form-wrap">
     <div class="form-card">
       <div class="fc-header">
         <span class="fc-title">CTG Parameters</span>
-        <span class="fc-badge">20 features required</span>
+        <span class="fc-badge">8 features required</span>
       </div>
+
       <div class="fc-body">
         <form action="/predict" method="POST">
 
+          <!-- Section 1 -->
           <div class="sec-label">Baseline &amp; Movement</div>
           <div class="form-grid cols2">
-            <div class="fg">
+            <!-- <div class="fg">
               <label>baseline value<span>FHR baseline in beats per minute</span></label>
               <input type="number" name="baseline value" placeholder="e.g. 120" step="1" min="0" required/>
-            </div>
-            <div class="fg">
+            </div> -->
+            <!-- <div class="fg">
               <label>fetal_movement<span>Fetal movements per second</span></label>
               <input type="number" name="fetal_movement" placeholder="e.g. 0.002" step="0.001" min="0" required/>
-            </div>
+            </div> -->
             <div class="fg">
               <label>accelerations<span>Accelerations per second</span></label>
               <input type="number" name="accelerations" placeholder="e.g. 0.003" step="0.001" min="0" required/>
             </div>
-            <div class="fg">
+            <!-- <div class="fg">
               <label>uterine_contractions<span>Uterine contractions per second</span></label>
               <input type="number" name="uterine_contractions" placeholder="e.g. 0.004" step="0.001" min="0" required/>
-            </div>
+            </div> -->
           </div>
 
+          <!-- Section 2 -->
           <div class="sec-label">Decelerations</div>
           <div class="form-grid">
-            <div class="fg">
+            <!-- <div class="fg">
               <label>light_decelerations<span>Light decelerations per second</span></label>
               <input type="number" name="light_decelerations" placeholder="e.g. 0.001" step="0.001" min="0" required/>
             </div>
             <div class="fg">
               <label>severe_decelerations<span>Severe decelerations per second</span></label>
               <input type="number" name="severe_decelerations" placeholder="e.g. 0.000" step="0.001" min="0" required/>
-            </div>
+            </div>-->
             <div class="fg">
               <label>prolongued_decelerations<span>Prolonged decelerations per second</span></label>
               <input type="number" name="prolongued_decelerations" placeholder="e.g. 0.000" step="0.001" min="0" required/>
             </div>
           </div>
 
+          <!-- Section 3 -->
           <div class="sec-label">Variability</div>
           <div class="form-grid cols2">
             <div class="fg">
               <label>abnormal_short_term_variability<span>% time with abnormal STV</span></label>
               <input type="number" name="abnormal_short_term_variability" placeholder="e.g. 73" step="1" min="0" required/>
             </div>
-            <div class="fg">
+            <!-- <div class="fg">
               <label>mean_value_of_short_term_variability<span>Mean STV value</span></label>
               <input type="number" name="mean_value_of_short_term_variability" placeholder="e.g. 0.5" step="0.1" min="0" required/>
-            </div>
+            </div> -->
             <div class="fg">
               <label>percentage_of_time_with_abnormal_long_term_variability<span>% time with abnormal LTV</span></label>
               <input type="number" name="percentage_of_time_with_abnormal_long_term_variability" placeholder="e.g. 43" step="1" min="0" required/>
@@ -264,36 +305,37 @@
             </div>
           </div>
 
+          <!-- Section 4 -->
           <div class="sec-label">Histogram Features</div>
           <div class="form-grid">
             <div class="fg">
-              <label>histogram_width<span>Width of FHR histogram</span></label>
+              <!-- <label>histogram_width<span>Width of FHR histogram</span></label>
               <input type="number" name="histogram_width" placeholder="e.g. 64" step="1" min="0" required/>
             </div>
             <div class="fg">
               <label>histogram_min<span>Min of FHR histogram</span></label>
               <input type="number" name="histogram_min" placeholder="e.g. 62" step="1" min="0" required/>
-            </div>
-            <div class="fg">
+            </div> -->
+            <!-- <div class="fg">
               <label>histogram_max<span>Max of FHR histogram</span></label>
               <input type="number" name="histogram_max" placeholder="e.g. 126" step="1" min="0" required/>
-            </div>
-            <div class="fg">
+            </div> -->
+            <!-- <div class="fg">
               <label>histogram_number_of_peaks<span>Number of histogram peaks</span></label>
               <input type="number" name="histogram_number_of_peaks" placeholder="e.g. 2" step="1" min="0" required/>
-            </div>
-            <div class="fg">
+            </div> -->
+            <!-- <div class="fg">
               <label>histogram_number_of_zeroes<span>Number of histogram zeroes</span></label>
               <input type="number" name="histogram_number_of_zeroes" placeholder="e.g. 0" step="1" min="0" required/>
-            </div>
+            </div> -->
             <div class="fg">
               <label>histogram_mode<span>Mode of FHR histogram</span></label>
               <input type="number" name="histogram_mode" placeholder="e.g. 150" step="1" min="0" required/>
             </div>
-            <div class="fg">
+            <!-- <div class="fg">
               <label>histogram_mean<span>Mean of FHR histogram</span></label>
               <input type="number" name="histogram_mean" placeholder="e.g. 137" step="1" min="0" required/>
-            </div>
+            </div> -->
             <div class="fg">
               <label>histogram_median<span>Median of FHR histogram</span></label>
               <input type="number" name="histogram_median" placeholder="e.g. 141" step="1" min="0" required/>
@@ -304,8 +346,9 @@
             </div>
           </div>
 
-          <div class="fc-footer" style="margin:0;padding:28px 0 0;border:none">
-            <span class="fc-note">All 20 fields are required for accurate prediction</span>
+          <!-- Submit Row -->
+          <div class="fc-footer-row">
+            <!-- <span class="fc-note">All 8 fields are required for accurate prediction</span> -->
             <button type="submit" class="btn-submit">Run Prediction →</button>
           </div>
 
