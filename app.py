@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Load the saved model
 # Make sure your trained model is saved as 'fetal_healthAI.pkl' in the same directory
-model = pickle.load(open('fetal_healthAI.pkl', 'rb'))
+model, scaler = pickle.load(open('fetal_health.pkl', 'rb'))
 
 # Map model output to label
 CLASS_LABELS = {
@@ -49,62 +49,56 @@ def predict():
     if request.method == 'GET':
         return render_template('inspect.html')
 
-    # Collect feature values from the form
-    feature_names = [
-        #'baseline value',
-        'accelerations',
-        #'fetal_movement',
-        #'uterine_contractions',
-        #'light_decelerations',
-        #'severe_decelerations',
-        'prolongued_decelerations',
-        'abnormal_short_term_variability',
-        #'mean_value_of_short_term_variability',
-        'percentage_of_time_with_abnormal_long_term_variability',
-        'mean_value_of_long_term_variability',
-        #'histogram_width',
-        #'histogram_min',
-        #'histogram_max',
-        #'histogram_number_of_peaks',
-        #'histogram_number_of_zeroes',
-        'histogram_mode',
-        #'histogram_mean',
-        'histogram_median',
-        'histogram_variance',
-    ]
+    try:
+        # ✅ Correct feature order (same as training)
+        input_data = [
+            float(request.form['prolongued_decelerations']),
+            float(request.form['abnormal_short_term_variability']),
+            float(request.form['percentage_of_time_with_abnormal_long_term_variability']),
+            float(request.form['histogram_variance']),
+            float(request.form['histogram_median']),
+            float(request.form['mean_value_of_long_term_variability']),
+            float(request.form['histogram_mode']),
+            float(request.form['accelerations'])
+        ]
+    except:
+        return "Invalid input. Please enter valid numbers."
 
-    features = {}
-    values = []
-    for name in feature_names:
-        val = request.form.get(name, 0)
-        try:
-            val = float(val)
-        except ValueError:
-            val = 0.0
-        features[name] = val
-        values.append(val)
+    # ✅ Create dictionary for display (fixes Jinja error)
+    features = {
+        "prolongued_decelerations": input_data[0],
+        "abnormal_short_term_variability": input_data[1],
+        "percentage_of_time_with_abnormal_long_term_variability": input_data[2],
+        "histogram_variance": input_data[3],
+        "histogram_median": input_data[4],
+        "mean_value_of_long_term_variability": input_data[5],
+        "histogram_mode": input_data[6],
+        "accelerations": input_data[7]
+    }
 
-    # Run prediction
-    input_array = np.array([values])
-    raw_pred = model.predict(input_array)[0]
+    # ✅ Convert to array
+    input_array = np.array(input_data).reshape(1, -1)
 
-    # raw_pred may be 1/2/3 (int) or the label string depending on your model
-    if isinstance(raw_pred, (int, float, np.integer)):
-        prediction = CLASS_LABELS.get(int(raw_pred), str(raw_pred))
-    else:
-        prediction = str(raw_pred)
+    # ✅ Apply scaling
+    input_array = scaler.transform(input_array)
 
-    result_class  = CLASS_CSS.get(prediction, 'normal')
-    description   = CLASS_DESCRIPTIONS.get(prediction, '')
+    # ✅ Prediction
+    prediction = model.predict(input_array)[0]
+
+    # ✅ Map result
+    result = CLASS_LABELS.get(int(prediction), "Unknown")
+
+    # Optional styling
+    result_class = CLASS_CSS.get(result, 'normal')
+    description = CLASS_DESCRIPTIONS.get(result, '')
 
     return render_template(
         'output.html',
-        prediction=prediction,
+        prediction=result,
         result_class=result_class,
         description=description,
-        features=features,
+        features=features
     )
-
 
 if __name__ == '__main__':
     app.run(debug=True)
