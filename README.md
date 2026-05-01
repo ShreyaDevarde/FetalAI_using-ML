@@ -57,7 +57,8 @@ fetal_health/
 │   ├── app.py
 │   ├── fetal_health.pkl
 │
-├── fetal_health.csv
+├── |--datadet/
+        |--fetal_health.csv
 ├── fetal_health.ipynb
 └── README.md
 ```
@@ -87,22 +88,11 @@ https://www.kaggle.com/datasets/andrewmvd/fetal-health-classification
 Selected Features:
 
 - 'accelerations',
-- 'fetal_movement',
-- 'uterine_contractions',
-- 'light_decelerations',
-- 'severe_decelerations',
 - 'prolongued_decelerations',
 - 'abnormal_short_term_variability',
-- 'mean_value_of_short_term_variability',
 - 'percentage_of_time_with_abnormal_long_term_variability',
 - 'mean_value_of_long_term_variability',
-- 'histogram_width',
-- 'histogram_min',
-- 'histogram_max',
-- 'histogram_number_of_peaks',
-- 'histogram_number_of_zeroes',
 - 'histogram_mode',
-- 'histogram_mean',
 - 'histogram_median',
 - 'histogram_variance',
 ---
@@ -128,7 +118,7 @@ Random Forest Classifier
 ## 💾 Save Model
 
 ```python
-pickle.dump(RF_model, open("fetal_health.pkl","wb"))
+pickle.dump(RF_model, open("fetal_health_final.pkl","wb"))
 ```
 ## ▶️ Run Flask App
 ### Install dependencies
