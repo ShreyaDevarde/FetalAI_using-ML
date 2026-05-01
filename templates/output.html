@@ -247,6 +247,19 @@
   <div class="r-pill">Prediction Result</div>
   <div class="r-label">fetal_health</div>
   <div class="r-value">{{ prediction }}</div>
+
+  <div style="
+  margin-top:12px;
+  padding:8px 18px;
+  border-radius:30px;
+  display:inline-block;
+  background:rgba(var(--accent-rgb),0.12);
+  border:1px solid rgba(var(--accent-rgb),0.4);
+  font-family:'DM Mono',monospace;
+  font-size:1rem;
+  letter-spacing:0.05em;">
+  Confidence: {{ confidence }}%
+  </div>
   <p class="r-desc">{{ description }}</p>
   <div class="r-actions">
     <a href="/predict" class="btn-primary">Predict Again →</a>
