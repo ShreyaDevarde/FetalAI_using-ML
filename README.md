@@ -107,10 +107,10 @@ Selected Features:
 
 | Model | Accuracy |
 |-------|----------|
-| Random Forest | 94.98% |
-| Decision Tree | 90.75% |
-| KNN | 87.14% |
-| Logistic Regression | 80.56% |
+| Random Forest | 91.31% |
+| Decision Tree | 88.97% |
+| KNN | 90.14% |
+| Logistic Regression | 80.99% |
 
 Best Model:
 Random Forest Classifier
@@ -118,7 +118,7 @@ Random Forest Classifier
 ## 💾 Save Model
 
 ```python
-pickle.dump(RF_model, open("fetal_health_final.pkl","wb"))
+pickle.dump(RF_model, open("fetal_health.pkl","wb"))
 ```
 ## ▶️ Run Flask App
 ### Install dependencies
