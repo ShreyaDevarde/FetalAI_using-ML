@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # ✅ Load model + scaler
-model, scaler = pickle.load(open("fetal_health_final.pkl", "rb"))
+model, scaler = pickle.load(open("fetal_health.pkl", "rb"))
 
 # ✅ Feature names (MUST match training)
 FEATURE_NAMES = [
